@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- The above 4 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+    <!-- Title -->
+    <title>WWA - Web Wisata Alam</title>
+
+    <!-- Favicon -->
+    <link rel="icon" href="img/core-img/favicon.ico">
+
+    <!-- Style CSS -->
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+    <!-- Preloader -->
+   <!-- <div id="preloader">
+        <div class="preload-content">
+            <div id="original-load"></div>
+        </div>
+    </div> -->
+    <!-- PHP -->
+    <?php
+
+      // Koneksi ke database
+      require_once 'db_login.php'; 
+      $db = new mysqli($db_host, $db_username, $db_password, $db_database) or die ("Could not connect to the database: <br />". $db->connect_error);
+
+      // Query
+      $qKategori = "SELECT * FROM kota ORDER BY id_kota";
+      $rKategori = $db->query($qKategori) or die ("Could not query the database: <br />". $db->error);
+
+
+    ?>
+
+
+    <!-- ##### Header Area Start ##### -->
+    <header class="header-area">
+
+        <!-- Top Header Area -->
+        <div class="original-nav-area" id="stickyNav">
+            <div class="classy-nav-container breakpoint-off">
+                <div class="container">
+                    <!-- Classy Menu -->
+                    <nav class="classy-navbar justify-content-between">
+
+                        <!-- Navbar Toggler -->
+                        <div class="classy-navbar-toggler">
+                            <span class="navbarToggler"><span></span><span></span><span></span></span>
+                        </div>
+
+                        <!-- Menu -->
+                        <div class="classy-menu" id="originalNav">
+                            <!-- close btn -->
+                            <div class="classycloseIcon">
+                                <div class="cross-wrap"><span class="top"></span><span class="bottom"></span></div>
+                            </div>
+
+                            <!-- Nav Start -->
+                            <div class="classynav">
+                                <div class="text-center">
+                                    <div class="container h-100">
+                                        <div class="row h-100 align-items-center">
+                                            <div class="col-5">
+                                                <a href="index.php" class="original-logo"><img src="img/core-img/2019.png" alt=""></a>
+                                            </div>
+                                            <div style="padding-right: 50px"><a href="support.php">Support Us</a></div>
+                                            <div><a href="#contact">Contact Us</a></div>
+                                        </div>
+                                    </div>
+                                    <div class="container h-100" style="padding-left: 100px; padding-top: 5px;">
+                                        <div class="row h-100 align-items-center">
+                                            <?php
+                                        $qKota = "SELECT * FROM kota ORDER BY id_kota";
+                                        $rKota = $db->query($qKota) or die ("Could not query the database: <br />". $db->error);
+                                        while($tampilGrid = $rKota->fetch_object()){
+                                            echo '
+                                            <ul>
+                                            <li><a href="orderkota.php?id_kota='.$tampilGrid->id_kota.'" >'.$tampilGrid->nama_kota.'</a></li>
+                                            </ul>';
+                                        }
+                                        ?>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Search Form  -->
+                                <div id="search-wrapper" align="right">
+                                    <form class="form-inline" method="GET" action="p_grid.php">
+                                        <input type="text" id="search" name="search" placeholder="Search something...">
+                                        <div id="close-icon"></div>
+                                        <input class="d-none" type="submit" value="">
+                                    </form>
+                                </div>
+                            </div>
+                            <!-- Nav End -->
+                        </div>
+                    </nav>
+                </div>
+            </div>
+        </div>
+
+                                
+    </header>
+    <!-- ##### Header Area End ##### -->
+
+    <!-- ##### Hero Area Start ##### -->
+
+    <!-- Menampilkan Tempat secara Grid -->
+    <?php        
+    if(isset($_GET['search'])){
+      $search = $_GET['search'];
+      //tampil grid dari search
+      $qGrid = 'SELECT * FROM artikel WHERE nama OR deskripsi LIKE "%'.$search.'%" ORDER BY id_artikel';
+      $rGrid = $db->query($qGrid) or die ("Could not query the database: <br />". $db->error);
+      echo '<div class="row mt-4" id="grid" style="padding-left: 250px;">';
+      while($tampilGrid = $rGrid->fetch_object()){
+        echo '
+            <div class="col-"><a href="single-post.php?id_artikel='.$tampilGrid->id_artikel.'"><ul style="list-style-type:none;">
+                <li><img src="tubes/images/'.$tampilGrid->gambar1.'"  width="200" height="100"></li>
+                <li>'.$tampilGrid->nama.'</li></div>';
+      }
+      echo '</div>';
+    }else{
+      echo '
+      <div class="mt-3 ml-3" style="padding-left: 450px; padding-top: 250px;">
+          <h2>Tempat belum dicari atau tidak ditemukan.</h2>
+      </div>';
+    }
+    ?>
+
+  </div>
+  </body>
+</html>
+
