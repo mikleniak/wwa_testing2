@@ -2945,7 +2945,7 @@ class PHPMailer
     public function encodeQPphp(
         $string,
         $line_max = 76,
-        /** @noinspection PhpUnusedParameterInspection *//* $space_conv = false*/
+        /** @noinspection PhpUnusedParameterInspection */
     ) {
         return $this->encodeQP($string, $line_max);
     }
