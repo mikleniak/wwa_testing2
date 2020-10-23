@@ -61,12 +61,12 @@ class Google extends AbstractProvider
         return 'https://accounts.google.com/o/oauth2/auth';
     }
 
-    public function getBaseAccessTokenUrl(array $params)
+    public function getBaseAccessTokenUrl(array)
     {
         return 'https://accounts.google.com/o/oauth2/token';
     }
 
-    public function getResourceOwnerDetailsUrl(AccessToken $token)
+    public function getResourceOwnerDetailsUrl(AccessToken)
     {
 	return ' ';
     }
@@ -105,7 +105,7 @@ class Google extends AbstractProvider
         return ' ';
     }
 
-    protected function checkResponse(ResponseInterface $response, $data)
+    protected function checkResponse(ResponseInterface, $data)
     {
         if (!empty($data['error'])) {
             $code  = 0;
@@ -120,7 +120,7 @@ class Google extends AbstractProvider
         }
     }
 
-    protected function createResourceOwner(array $response, AccessToken $token)
+    protected function createResourceOwner(array $response, AccessToken)
     {
         return new GoogleUser($response);
     }
