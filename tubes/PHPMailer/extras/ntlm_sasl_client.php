@@ -156,7 +156,7 @@ class ntlm_sasl_client_class
         return ($status);
     }
 
-    public function step(&$client, $response, &$message, &$interactions)
+    public function step(&$client, $response, &$message, /*&$interactions*/)
     {
         switch ($this->state) {
             case SASL_NTLM_STATE_IDENTIFY_DOMAIN:
