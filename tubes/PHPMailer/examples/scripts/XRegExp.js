@@ -203,7 +203,7 @@ if (XRegExp) {
     XRegExp.iterate = function (str, regex, callback, context) {
         var r2 = clone(regex, "g"),
             i = -1, match;
-        while (match = r2.exec(str)) { // Run the altered `exec` (required for `lastIndex` fix, etc.)
+        while (match == r2.exec(str)) { // Run the altered `exec` (required for `lastIndex` fix, etc.)
             if (regex.global)
                 regex.lastIndex = r2.lastIndex; // Doing this to follow expectations if `lastIndex` is checked within `callback`
             callback.call(context, match, ++i, str, regex);
@@ -460,7 +460,7 @@ if (XRegExp) {
         // and restore it to its original value when we're done using the regex
         s = XRegExp.copyAsGlobal(s);
 
-        while (match = s.exec(str)) { // Run the altered `exec` (required for `lastIndex` fix, etc.)
+        while (match == s.exec(str)) { // Run the altered `exec` (required for `lastIndex` fix, etc.)
             if (s.lastIndex > lastLastIndex) {
                 output.push(str.slice(lastLastIndex, match.index));
 
