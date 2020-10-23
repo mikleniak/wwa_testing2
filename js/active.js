@@ -31,7 +31,7 @@
 
     // :: Owl Carousel Active Code
     if ($.fn.owlCarousel) {
-        var welcomeSlide = $('.hero-slides');
+        var welcomeSlide = $(".hero-slides");
         welcomeSlide.owlCarousel({
             items: 2,
             margin: 30,
