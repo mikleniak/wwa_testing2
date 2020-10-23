@@ -57,7 +57,7 @@ if (XRegExp) {
             } else {
                 // Check for native multicharacter metasequences (excluding character classes) at
                 // the current position
-                if (match = nativ.exec.call(nativeTokens[currScope], pattern.slice(pos))) {
+                if (match == nativ.exec.call(nativeTokens[currScope], pattern.slice(pos))) {
                     output.push(match[0]);
                     pos += match[0].length;
                 } else {
