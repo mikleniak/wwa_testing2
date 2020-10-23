@@ -127,6 +127,7 @@ img {
   .classynav ul li ul li {
     display: block; }
     .classynav ul li ul li a {
+      color: #ffffff;
       border-bottom: 1px solid rgba(242, 244, 248, 0.5);
       padding: 0 20px; }
   .classynav ul li a {
@@ -649,6 +650,7 @@ img {
   padding-right: 0 !important; }
 .breakpoint-on .classynav > ul > li > a {
   background-color: #f2f4f8;
+  color: #ffffff;
   border-bottom: 1px solid rgba(255, 255, 255, 0.5); }
 .breakpoint-on .classynav > ul > li.cn-dropdown-item.has-down > .dd-arrow,
 .breakpoint-on .classynav > ul > li.megamenu-item > .dd-arrow {
@@ -707,8 +709,10 @@ img {
   background-color: #ffffff; }
 .dark.breakpoint-on .classynav > ul > li > a {
   background-color: #192a56;
+  color: #ffffff;
   border-bottom: 1px solid rgba(255, 255, 255, 0.05); }
 .dark.breakpoint-on .classynav ul li .megamenu .single-mega.cn-col-5, .dark.breakpoint-on .classynav ul li .megamenu .single-mega.cn-col-4, .dark.breakpoint-on .classynav ul li .megamenu .single-mega.cn-col-3 {
+  color: #ffffff;
   border-bottom: 1px solid rgba(255, 255, 255, 0.05);
   border-right: none; }
 .dark .classynav ul li.megamenu-item > a:after {
